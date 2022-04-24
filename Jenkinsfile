@@ -36,26 +36,26 @@ pipeline {
                 }
             }
         }
-        stage("build image") {
-            steps {
-                script {
-                    echo "building the docker image..."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh "docker build -t ahmadhaleem/my-repo:${IMAGE_NAME} ."
-                        sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh "docker push ahmadhaleem/my-repo:${IMAGE_NAME}"
-
-                    }
-                }
-            }
-        }
-        stage("deploy") {
-            steps {
-                script {
-                    echo 'deploying the application...'
-                }
-            }
-        }
+//         stage("build image") {
+//             steps {
+//                 script {
+//                     echo "building the docker image..."
+//                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+//                         sh "docker build -t ahmadhaleem/my-repo:${IMAGE_NAME} ."
+//                         sh "echo $PASS | docker login -u $USER --password-stdin"
+//                         sh "docker push ahmadhaleem/my-repo:${IMAGE_NAME}"
+//
+//                     }
+//                 }
+//             }
+//         }
+//         stage("deploy") {
+//             steps {
+//                 script {
+//                     echo 'deploying the application...'
+//                 }
+//             }
+//         }
         stage("commit version update") {
             steps {
                 script {
@@ -70,8 +70,9 @@ pipeline {
                         //sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
                         //sh "git remote set-url origin https://${USER}:${PASS}@github.com/AhmadHaleeem/java-maven-app.git"
                         //sh "git remote set-url origin https://${USER}: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@github.com/AhmadHaleeem/java-maven-app.git"
-                        sh "git remote set-url origin https://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@github.com/${USER}/java-maven-app.git"
+                        //sh "git remote set-url origin https://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@github.com/${USER}/java-maven-app.git"
                         //sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
+                        sh "git remote set-url origin https://${USER}:${PASS}@githun.com/AhmadHaleeem/java-maven-app.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:master'
