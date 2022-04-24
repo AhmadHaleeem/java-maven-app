@@ -5,7 +5,7 @@ pipeline {
     //     booleanParam(name: 'executeTests', defaultValue: true, description: '')
     // }
     tools {
-        maven "Maven"
+        maven "maven-3.8"
     }
     stages {
         stage("init") {
