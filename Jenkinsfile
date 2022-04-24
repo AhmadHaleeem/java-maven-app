@@ -1,40 +1,35 @@
-def gv
-
 pipeline {
     agent any
-    // parameters {
-    //     choice(name: 'VERSION', choices: ['1.0.0', '1.2.0', '1.3.0'], description: '')
-    //     booleanParam(name: 'executeTests', defaultValue: true, description: '')
-    // }
-    tools {
-        maven "maven-3.8"
-    }
     stages {
-        stage("init") {
+        stage("test") {
             steps {
                 script {
-                    gv = load "script.groovy"
+                    echo "Testing..."
+                    echo "Executing pipeline for branch $BRANCH_NAME"
                 }
             }
         }
-        stage("build jar") {
-            steps {
-                script {
-                    gv.buildJar()
+        stage("build") {
+            when {
+                expression {
+                    BRANCH_NAME == 'master'
                 }
             }
-        }
-        stage("build image") {
             steps {
                 script {
-                    gv.buildImage()
+                    echo "building...."
                 }
             }
         }
         stage("deploy") {
+            when {
+                expression {
+                    BRANCH_NAME == 'master'
+                }
+            }
             steps {
                 script {
-                    gv.deployApp()
+                    echo "deploying..."
                 }
             }
         }
