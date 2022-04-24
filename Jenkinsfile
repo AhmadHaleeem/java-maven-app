@@ -52,7 +52,7 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                    gv.deployApp()
+                    echo 'deploying the application...'
                 }
             }
         }
