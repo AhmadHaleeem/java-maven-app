@@ -20,7 +20,7 @@ pipeline {
         stage("build jar") {
             steps {
                 script {
-                    echo "Hello from the new feature..."
+                    echo "Hello from the new feature updated..."
                     gv.buildJar()
                 }
             }
