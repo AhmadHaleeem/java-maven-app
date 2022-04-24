@@ -43,8 +43,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "docker build -t ahmadhaleem/my-repo:${IMAGE_NAME} ."
                         sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh "docker push ahmadhaleem/my-repo:${IMAGE_NAME}"
-
+                        //sh "docker push ahmadhaleem/my-repo:${IMAGE_NAME}"
                     }
                 }
             }
@@ -70,7 +69,7 @@ pipeline {
                         sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
-                        sh 'git push -u origin master'
+                        sh 'git push -u origin HEAD:master'
                     }
                 }
             }
