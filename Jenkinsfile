@@ -72,7 +72,7 @@ pipeline {
                         //sh "git remote set-url origin https://${USER}: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@github.com/AhmadHaleeem/java-maven-app.git"
                         //sh "git remote set-url origin https://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@github.com/${USER}/java-maven-app.git"
                         //sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
-                        sh "git remote set-url origin https://${USER}:${PASS}@githun.com/AhmadHaleeem/java-maven-app.git"
+                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/AhmadHaleeem/java-maven-app.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:master'
