@@ -15,27 +15,27 @@ pipeline {
 //                 }
 //             }
 //         }
-        stage('increment version') {
-            steps {
-                script {
-                    echo 'incrementing app version...'
-                    sh 'mvn build-helper:parse-version versions:set \
-                        -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
-                        versions:commit'
-                    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
-                    def version = matcher[0][1]
-                    env.IMAGE_NAME = "$version-$BUILD_NUMBER"
-                }
-            }
-        }
-        stage("build jar") {
-            steps {
-                script {
-                    echo "building the application..."
-                    sh 'mvn clean package'
-                }
-            }
-        }
+//         stage('increment version') {
+//             steps {
+//                 script {
+//                     echo 'incrementing app version...'
+//                     sh 'mvn build-helper:parse-version versions:set \
+//                         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
+//                         versions:commit'
+//                     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+//                     def version = matcher[0][1]
+//                     env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+//                 }
+//             }
+//         }
+//         stage("build jar") {
+//             steps {
+//                 script {
+//                     echo "building the application..."
+//                     sh 'mvn clean package'
+//                 }
+//             }
+//         }
 //         stage("build image") {
 //             steps {
 //                 script {
@@ -73,9 +73,9 @@ pipeline {
                         //sh "git remote set-url origin https://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@github.com/${USER}/java-maven-app.git"
                         //sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
                         //sh "git remote set-url origin https://AhmadHaleeem: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@github.com/${USER}:${PASS}/java-maven-app.git"
-                        sh 'git add .'
-                        sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:master'
+                        //sh 'git add .'
+                        //sh 'git commit -m "ci: version bump"'
+                        //sh 'git push origin HEAD:master'
                     }
                 }
             }
