@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     //gv.buildImage()
-                    buildImage()
+                    buildImage 'ahmadhaleem/my-repo:jma-3.0'
                 }
             }
         }
