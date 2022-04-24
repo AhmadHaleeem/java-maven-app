@@ -29,7 +29,7 @@ pipeline {
             }
             steps {
                 script {
-                    echo "deploying..."
+                    echo "deploying payment..."
                 }
             }
         }
