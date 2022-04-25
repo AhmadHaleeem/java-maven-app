@@ -4,32 +4,24 @@ pipeline {
         stage("test") {
             steps {
                 script {
-                    echo "Testing..."
-                    echo "Executing pipeline for branch $BRANCH_NAME"
+                    echo "Testing the application..."
                 }
             }
         }
         stage("build") {
-            when {
-                expression {
-                    BRANCH_NAME == 'master'
-                }
-            }
             steps {
                 script {
-                    echo "building...."
+                    echo "Building the application..."
                 }
             }
         }
         stage("deploy") {
-            when {
-                expression {
-                    BRANCH_NAME == 'master'
-                }
-            }
             steps {
                 script {
-                    echo "deploying payment..."
+                    def dockerCmd = 'docker run -d -p 3000:3000 ahmadhaleem/node-hello-world:latest'
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.100.175 ${dockerCmd}"
+                    }
                 }
             }
         }
