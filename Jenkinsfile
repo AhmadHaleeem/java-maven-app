@@ -69,7 +69,7 @@ pipeline {
                         //sh 'git config --list'
                         //sh "touch test1.txt"
                         //sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
-                        //sh 'git remote remove origin'
+                        sh 'git remote remove origin'
                         sh 'git remote add origin https://${USER}:${PASS}@github.com/${USER}/java-maven-app.git'
                         sh 'git add .'
                         sh 'git commit -m "version bump"'
