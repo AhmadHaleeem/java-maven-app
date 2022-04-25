@@ -69,18 +69,18 @@ pipeline {
                 }
             }
         }
-        stage("commit version update") {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'Github-token-cred', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh 'git remote remove origin'
-                        sh 'git remote add origin https://${USER}:${PASS}@github.com/${USER}/java-maven-app.git'
-                        sh 'git add .'
-                        sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:jenkins-shared-lib'
-                    }
-                }
-            }
-        }
+//         stage("commit version update") {
+//             steps {
+//                 script {
+//                     withCredentials([usernamePassword(credentialsId: 'Github-token-cred', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+//                         sh 'git remote remove origin'
+//                         sh 'git remote add origin https://${USER}:${PASS}@github.com/${USER}/java-maven-app.git'
+//                         sh 'git add .'
+//                         sh 'git commit -m "ci: version bump"'
+//                         sh 'git push origin HEAD:jenkins-shared-lib'
+//                     }
+//                 }
+//             }
+//         }
     }
 }
