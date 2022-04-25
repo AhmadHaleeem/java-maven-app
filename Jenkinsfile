@@ -29,7 +29,7 @@ pipeline {
                         versions:commit'
                     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def version = matcher[0][1]
-                    env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+                    env.IMAGE_NAME = "ahmadhaleem/demo-app/$version-$BUILD_NUMBER"
                 }
             }
         }
@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     //gv.deployApp()
-                    def ec2Instance = "ec2-user@18.197.26.189"
+                    def ec2Instance = "ec2-user@18.185.120.158"
                     echo "deploying docker image to EC2..."
                     //def dockerCmd = "docker run -d -p 8080:8080 ${IMAGE_NAME}"
                     //def dockerComposeCmd = "docker-compose -f docker-compose.yaml up --detach"
