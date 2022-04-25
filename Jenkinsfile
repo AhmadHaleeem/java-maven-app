@@ -42,6 +42,7 @@ pipeline {
                     //buildImage 'ahmadhaleem/my-repo:jma-3.0'
                     buildImage(env.IMAGE_NAME)
                     dockerLogin()
+                    echo "Successfully logged in"
                     dockerPush(env.IMAGE_NAME)
                     //dockerPush 'ahmadhaleem/my-repo:jma-3.0'
                 }
