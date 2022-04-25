@@ -17,7 +17,7 @@ pipeline {
         maven "maven-3.8"
     }
     environment {
-        IMAGE_NAME = 'ahmadhaleem/demo-app:1.0'
+        IMAGE_NAME = 'ahmadhaleem/demo-app:2.0'
     }
     stages {
         stage("init") {
@@ -56,7 +56,7 @@ pipeline {
                     echo "deploying docker image to EC2..."
                     //def dockerCmd = "docker run -d -p 8080:8080 ${IMAGE_NAME}"
                     //def dockerComposeCmd = "docker-compose -f docker-compose.yaml up --detach"
-                    def shellCmd = "bash ./server-cmds.sh"
+                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
                     sshagent(['ec2-server-key']) {
                         sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2Instance}:/home/ec2-user"
                         sh "scp docker-compose.yaml ${ec2Instance}:/home/ec2-user"
