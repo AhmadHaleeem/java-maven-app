@@ -40,9 +40,9 @@ pipeline {
                 script {
                     //gv.buildImage()
                     //buildImage 'ahmadhaleem/my-repo:jma-3.0'
-                    buildImage(ENV.IMAGE_NAME)
+                    buildImage(env.IMAGE_NAME)
                     dockerLogin()
-                    dockerPush(ENV.IMAGE_NAME)
+                    dockerPush(env.IMAGE_NAME)
                     //dockerPush 'ahmadhaleem/my-repo:jma-3.0'
                 }
             }
