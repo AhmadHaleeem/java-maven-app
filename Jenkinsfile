@@ -17,7 +17,7 @@ pipeline {
         maven "maven-3.8"
     }
     environment {
-        IMAGE_NAME = 'ahmadhaleem/my-repo:1.1.5-2'
+        IMAGE_NAME = 'ahmadhaleem/demo-app:1.0'
     }
     stages {
         stage("init") {
