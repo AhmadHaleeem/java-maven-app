@@ -67,7 +67,7 @@ pipeline {
                         //sh 'git status'
                         //sh 'git branch'
                         //sh 'git config --list'
-                        sh "mkdir api"
+                        sh "touch test.txt"
                         sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
 
                         sh 'git add .'
