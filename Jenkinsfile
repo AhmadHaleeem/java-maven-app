@@ -16,6 +16,9 @@ pipeline {
     tools {
         maven "maven-3.8"
     }
+    environment {
+        IMAGE_NAME = 'ahmadhaleem/my-repo:1.1.5-3'
+    }
     stages {
         stage("init") {
             steps {
@@ -36,16 +39,23 @@ pipeline {
             steps {
                 script {
                     //gv.buildImage()
-                    buildImage 'ahmadhaleem/my-repo:jma-3.0'
+                    //buildImage 'ahmadhaleem/my-repo:jma-3.0'
+                    buildImage(ENV.IMAGE_NAME)
                     dockerLogin()
-                    dockerPush 'ahmadhaleem/my-repo:jma-3.0'
+                    dockerPush(ENV.IMAGE_NAME)
+                    //dockerPush 'ahmadhaleem/my-repo:jma-3.0'
                 }
             }
         }
         stage("deploy") {
             steps {
                 script {
-                    gv.deployApp()
+                    //gv.deployApp()
+                    echo "deploying docker image to EC2..."
+                    def dockerCmd = "docker run -d -p 8080:8080 ${IMAGE_NAME}"
+                    sshagent(['ec2-server-key']) {
+                       sh "ssh -o StrictHostKeyChecking=no ec2-user@18.197.26.189 ${dockerCmd}"
+                    }
                 }
             }
         }
