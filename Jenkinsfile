@@ -70,7 +70,7 @@ pipeline {
                         sh "touch test1.txt"
                         //sh "git remote set-url origin https://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@github.com/${USER}:${PASS}/AhmadHaleeem/java-maven-app.git"
                         sh 'git remote remove origin'
-                        sh 'git remote add origin  https://${USER}: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@github.com/${USER}/java-maven-app.git'
+                        sh 'git remote add origin  https://${USER}:${PASS}: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@github.com/${USER}/java-maven-app.git'
                         sh 'git add .'
                         sh 'git commit -m "version bump"'
                         sh 'git push origin HEAD:jenkins-jobs'
